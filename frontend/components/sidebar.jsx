@@ -6,16 +6,6 @@ import $ from "@rtorr/ajax-only";
 class Sidebar extends Component {
   constructor(props) {
     super(props);
-    this.logOut = this.logOut.bind(this);
-  }
-
-  logOut() {
-    return $.ajax({
-      method: "DELETE",
-      url: `/users/sign_out`
-    }).then(() => {
-      window.location.reload();
-    });
   }
 
   checkOnclick(id) {
@@ -40,16 +30,6 @@ class Sidebar extends Component {
             </li>
           );
         })}
-        <li key={SIDEBAR_LINKS.length} className="sidebar-item">
-          <Link
-            id="logout"
-            className="sidebar-link"
-            onClick={this.logOut}
-            to={"/users/sign_in"}
-          >
-            Sign Out
-          </Link>
-        </li>
       </ul>
     );
   }
