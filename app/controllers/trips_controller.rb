@@ -14,7 +14,11 @@ class TripsController < ApplicationController
   
   def update
     @trip = Trip.find(params[:id])
+<<<<<<< Updated upstream
     @trip.update(params)
+=======
+    @trip.update(trip_params)
+>>>>>>> Stashed changes
     
     render json: @trip
   end
@@ -28,7 +32,11 @@ class TripsController < ApplicationController
   private
   
   def trip_params
+<<<<<<< Updated upstream
     params.require(:article).permit(:id, :name, :start_date, :start_time, :end_date, :end_time, 
+=======
+    params.require(:trip).permit(:name, :start_date, :start_time, :end_date, :end_time, 
+>>>>>>> Stashed changes
       :itinerary, :transportation, :drop_off_location_long, :drop_off_location_lat, 
       :pick_up_location_long, :pick_up_location_lat
     )
