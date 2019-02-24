@@ -11,6 +11,7 @@ import Main from "./main.jsx";
 import Construction from "./construction.jsx";
 import Default from "./default.jsx";
 import Trips from "./trip.jsx";
+import Form from "./form.jsx";
 
 // <Route
 //   path="/users/sign_in"
@@ -27,6 +28,7 @@ const Root = ({ store }) => {
             <Route exact path="/en-us" component={Default} />
             <Route exact path="/en-us/trip" component={Trips} />
             <Route path="/en-us/under-construction" component={Construction} />
+            <Route exact path="/en-us/form" component={Form} />
           </Main>
         </Switch>
       </BrowserRouter>

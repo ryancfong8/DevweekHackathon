@@ -6,3 +6,11 @@ export const getTrips = id => {
     url: `/trips/{id}`
   });
 };
+
+export const createTrip = data => {
+  return $.ajax({
+    method: "POST",
+    url: `/api/trips`,
+    data: { trip: data.trip }
+  });
+};
