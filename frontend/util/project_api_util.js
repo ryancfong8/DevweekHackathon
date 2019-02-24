@@ -1,8 +1,8 @@
-import $ from '@rtorr/ajax-only';
+import $ from "@rtorr/ajax-only";
 
-export const scrapeGif = () => {
+export const getTrips = id => {
   return $.ajax({
-    method: 'GET',
-    url: 'https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC'
+    method: "GET",
+    url: `/trips/{id}`
   });
 };

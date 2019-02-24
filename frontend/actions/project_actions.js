@@ -1,19 +1,12 @@
-import * as APIUtil from '../util/project_api_util';
-export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
-export const RECEIVE_GIF = 'RECEIVE_GIF';
+import * as APIUtil from "../util/project_api_util";
+export const RECEIVE_TRIPS = "RECEIVE_TRIPS";
 
-export const scrapeGif = () => dispatch => (
-  APIUtil.scrapeGif()
-    .then((gif) => (dispatch(receiveGif(gif))))
-    .fail((errors) => (dispatch(receiveErrors(errors.responseJSON))))
-);
+export const getTrips = () => dispatch =>
+  APIUtil.getTrips()
+    .then(trips => dispatch(receiveTrips(trips)))
+    .fail(errors => dispatch(receiveErrors(errors.responseJSON)));
 
-export const receiveErrors = errors => ({
-    type: RECEIVE_ERRORS,
-    errors
-});
-
-export const receiveGif = gif => ({
-  type: RECEIVE_GIF,
-  gif
+export const receiveTrips = trips => ({
+  type: RECEIVE_TRIPS,
+  trips
 });
