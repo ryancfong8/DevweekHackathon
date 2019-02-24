@@ -3,5 +3,5 @@ class Trip < ApplicationRecord
   has_many :locations
   has_many :forms
   has_many :user_trips
-  has_many :members, through: :user_trips, class_name: :User
+  has_many :members, through: :user_trips, source: :user
 end

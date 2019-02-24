@@ -15,6 +15,5 @@ class CreateTrips < ActiveRecord::Migration[5.1]
       t.references :host, index: true, foreign_key: { to_table: :users }, null: false
       t.timestamps
     end
-    # add_reference :trips, :user, index: true, foreign_key: true
   end
 end
