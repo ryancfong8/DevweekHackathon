@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190224001350) do
+ActiveRecord::Schema.define(version: 20190224010038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20190224001350) do
     t.index ["user_id"], name: "index_forms_on_user_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.bigint "trip_id", null: false
+    t.float "long"
+    t.float "lat"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_locations_on_trip_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.string "name"
     t.date "start_date"
@@ -38,7 +47,7 @@ ActiveRecord::Schema.define(version: 20190224001350) do
     t.float "drop_off_location_lat"
     t.float "pick_up_location_long"
     t.float "pick_up_location_lat"
-    t.bigint "host_id"
+    t.bigint "host_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["host_id"], name: "index_trips_on_host_id"
@@ -57,5 +66,8 @@ ActiveRecord::Schema.define(version: 20190224001350) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "forms", "trips"
+  add_foreign_key "forms", "users"
+  add_foreign_key "locations", "trips"
   add_foreign_key "trips", "users", column: "host_id"
 end

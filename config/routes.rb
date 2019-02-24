@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   scope :api do  
     resources :trips
     resources :forms
+    resources :locations
   end
   root "static_pages#root"
   get "/en-us", to: 'static_pages#root'
