@@ -10,6 +10,7 @@ import {
 import Main from "./main.jsx";
 import Construction from "./construction.jsx";
 import Default from "./default.jsx";
+import Trips from "./trip.jsx";
 
 // <Route
 //   path="/users/sign_in"
@@ -24,6 +25,7 @@ const Root = ({ store }) => {
         <Switch>
           <Main path="/en-us">
             <Route exact path="/en-us" component={Default} />
+            <Route exact path="/en-us/trip" component={Trips} />
             <Route path="/en-us/under-construction" component={Construction} />
           </Main>
         </Switch>
