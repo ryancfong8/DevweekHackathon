@@ -3,6 +3,10 @@ class TripsController < ApplicationController
     render json: Trip.all
   end
   
+  def create
+    @trip = Trip.create!(trip_params)
+    
+    render json: @trip
   def new
     render json: Trip.new
   end
