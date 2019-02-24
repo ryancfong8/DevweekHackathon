@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190223232625) do
+ActiveRecord::Schema.define(version: 20190224010038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "forms", force: :cascade do |t|
+    t.bigint "trip_id", null: false
+    t.bigint "user_id", null: false
+    t.string "form"
+    t.boolean "signed", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_forms_on_trip_id"
+    t.index ["user_id"], name: "index_forms_on_user_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.bigint "trip_id", null: false
+    t.float "long"
+    t.float "lat"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_locations_on_trip_id"
+  end
 
   create_table "trips", force: :cascade do |t|
     t.string "name"
@@ -27,10 +47,10 @@ ActiveRecord::Schema.define(version: 20190223232625) do
     t.float "drop_off_location_lat"
     t.float "pick_up_location_long"
     t.float "pick_up_location_lat"
+    t.bigint "host_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_trips_on_user_id"
+    t.index ["host_id"], name: "index_trips_on_host_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,5 +66,8 @@ ActiveRecord::Schema.define(version: 20190223232625) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "trips", "users"
+  add_foreign_key "forms", "trips"
+  add_foreign_key "forms", "users"
+  add_foreign_key "locations", "trips"
+  add_foreign_key "trips", "users", column: "host_id"
 end

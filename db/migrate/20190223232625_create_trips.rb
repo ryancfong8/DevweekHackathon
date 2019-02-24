@@ -12,8 +12,9 @@ class CreateTrips < ActiveRecord::Migration[5.1]
       t.float :drop_off_location_lat
       t.float :pick_up_location_long
       t.float :pick_up_location_lat
+      t.references :host, index: true, foreign_key: { to_table: :users }, null: false
       t.timestamps
     end
-    add_reference :trips, :user, index: true, foreign_key: true
+    # add_reference :trips, :user, index: true, foreign_key: true
   end
 end
