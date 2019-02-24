@@ -1,10 +1,10 @@
 class CreateForms < ActiveRecord::Migration[5.1]
   def change
     create_table :forms do |t|
-      t.references :trip, index: true
-      t.references :user, index: true
+      t.references :trip, index: true, null: false
+      t.references :user, index: true, null: false
       t.string :form
-      t.boolean :signed
+      t.boolean :signed, null: false, default: false
       t.timestamps
     end
   end

@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20190224001350) do
   enable_extension "plpgsql"
 
   create_table "forms", force: :cascade do |t|
-    t.bigint "trip_id"
-    t.bigint "user_id"
+    t.bigint "trip_id", null: false
+    t.bigint "user_id", null: false
     t.string "form"
-    t.boolean "signed"
+    t.boolean "signed", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["trip_id"], name: "index_forms_on_trip_id"
@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 20190224001350) do
     t.float "drop_off_location_lat"
     t.float "pick_up_location_long"
     t.float "pick_up_location_lat"
+    t.bigint "host_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_trips_on_user_id"
+    t.index ["host_id"], name: "index_trips_on_host_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,5 +57,5 @@ ActiveRecord::Schema.define(version: 20190224001350) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "trips", "users"
+  add_foreign_key "trips", "users", column: "host_id"
 end
