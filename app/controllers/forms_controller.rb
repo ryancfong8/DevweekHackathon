@@ -14,7 +14,8 @@ class FormsController < ApplicationController
   end
   
   def update
-    @form = Form.update!(form_params)
+    @form = Form.find(params[:id])
+    @form.update!(form_params)
     render json: @form
   end
   
