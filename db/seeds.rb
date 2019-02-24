@@ -14,6 +14,7 @@ peaches = User.create!(name: "peaches", email: "peaches@suremail.info", password
 smith = User.create!(name: "smith", email: "smith@suremail.info", password: "password")
 trip = Trip.create!(name: "Test trip", host: jack)
 party = Trip.create!(name: "Party trip", host: jill)
+house_party = Trip.create!(name: "House Party", host: jill)
 UserTrip.create!(user: jill, trip: trip)
 UserTrip.create!(user: peanut, trip: trip)
 UserTrip.create!(user: peaches, trip: trip)
